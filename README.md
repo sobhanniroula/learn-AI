@@ -50,3 +50,5 @@ A tool that analyzes a business's Google reviews and performs sentiment analysis
 | Backend  | FastAPI    |
 | Database | SQLite     |
 | LLM      | Gemini API |
+
+More about it: [Customer Feedback Analyzer](python-for-AI/customer-feedback-analyzer/README.md)

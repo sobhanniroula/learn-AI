@@ -1,11 +1,22 @@
 # MCP Chat
 
-MCP Chat is a command-line interface application that enables interactive chat capabilities with AI models through the Anthropic API. The application supports document retrieval, command-based prompts, and extensible tool integrations via the MCP (Model Control Protocol) architecture.
+> Project from the [Introduction to Model Context Protocol](https://anthropic.skilljar.com/introduction-to-model-context-protocol) course by Anthropic (course 2 in my [learn-AI](../../README.md) repo).
+
+MCP Chat is a command-line interface application that enables interactive chat capabilities with AI models through the Anthropic API. The application supports document retrieval, command-based prompts, and extensible tool integrations via the MCP (Model Context Protocol) architecture.
+
+## Project Structure
+
+| File | Purpose |
+| ---- | ------- |
+| `main.py` | Entry point; loads `.env`, starts the MCP client(s) and the CLI |
+| `mcp_server.py` | MCP server with the document tools, resources and prompts |
+| `mcp_client.py` | MCP client used to connect to the server |
+| `core/` | Claude service, chat loop, tool handling and CLI |
 
 ## Prerequisites
 
 - Python 3.9+
-- Anthropic API Key
+- Anthropic API Key (from [console.anthropic.com](https://console.anthropic.com); a Claude subscription does not include API access)
 
 ## Setup
 
@@ -15,6 +26,7 @@ MCP Chat is a command-line interface application that enables interactive chat c
 
 ```
 ANTHROPIC_API_KEY=""  # Enter your Anthropic API secret key
+CLAUDE_MODEL=""       # A current model ID, e.g. claude-haiku-4-5-20251001
 ```
 
 ### Step 2: Install dependencies
@@ -88,23 +100,35 @@ Use the @ symbol followed by a document ID to include document content in your q
 Use the / prefix to execute commands defined in the MCP server:
 
 ```
-> /summarize deposition.md
+> /summarize_doc deposition.md
 ```
 
 Commands will auto-complete when you press Tab.
+
+## MCP Server Features
+
+| Type     | Name                  | Description |
+| -------- | --------------------- | ----------- |
+| Tool     | `read_doc_contents`   | Read the contents of a document |
+| Tool     | `edit_doc_contents`   | Replace a string in a document with another string |
+| Resource | `docs://documents`    | List all document IDs |
+| Resource | `docs://documents/{doc_id}` | Get the contents of one document |
+| Prompt   | `format_document`     | Rewrite a document in markdown format |
+| Prompt   | `summarize_doc`       | Summarize a document |
+
+### Testing with the MCP Inspector
+
+```bash
+uv run mcp dev mcp_server.py
+```
+
+If the Inspector doesn't prefill the connection, set Transport to STDIO, Command to `uv` and Arguments to `run mcp_server.py`.
 
 ## Development
 
 ### Adding New Documents
 
 Edit the `mcp_server.py` file to add new documents to the `docs` dictionary.
-
-### Implementing MCP Features
-
-To fully implement the MCP features:
-
-1. Complete the TODOs in `mcp_server.py`
-2. Implement the missing functionality in `mcp_client.py`
 
 ### Linting and Typing Check
 

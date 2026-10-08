@@ -11,10 +11,11 @@ Each top-level folder is a **course**, and each subfolder inside it is a **proje
 ```
 learn-AI/
 ├── README.md
-├── python-for-AI/                  # Course 1: Python for AI
+├── python-for-AI/                  # Course 1: Python for AI (YouTube: Codebasics)
 │   └── customer-feedback-analyzer/ # Project: Customer Feedback Analyzer
-└── anthropic-mcp-course/           # Course 2: Introduction to Model Context Protocol
-    └── cli-based-chatbot/          # Project: MCP Chat (CLI-based chatbot)
+├── anthropic-mcp-course/           # Course 2: Introduction to Model Context Protocol (Anthropic)
+│   └── cli-based-chatbot/          # Project: MCP Chat (CLI-based chatbot)
+└── ai-agents-course/               # Course 3: AI Agents Course (Hugging Face)
 ```
 
 > The tree will grow as I move through the learning path and add new courses and projects.
@@ -27,7 +28,7 @@ learn-AI/
 
 The first course of the path. It revises Python with a focus on what is needed for AI work, and finishes with a small end-to-end project that puts it into practice by calling an LLM API from a real app.
 
-**Status:** In progress
+**Status:** Completed
 
 #### Project: Customer Feedback Analyzer — [`python-for-AI/customer-feedback-analyzer/`](python-for-AI/customer-feedback-analyzer)
 
@@ -95,3 +96,17 @@ A command-line chatbot that talks to Claude through the Anthropic API and uses M
 | Package mgmt | uv                               |
 
 More about it: [MCP Chat](2-anthropic-mcp-course/cli-based-chatbot/README.md)
+
+---
+
+### 3. AI Agents Course — [`3-ai-agents-course/`](3-ai-agents-course)
+
+**Course:** [AI Agents Course (Hugging Face)](https://huggingface.co/learn/agents-course/unit0/introduction)
+
+The third course of the path. A free, self-paced course from Hugging Face that goes from agent fundamentals (tools, thoughts, actions, observations) to building agents with the smolagents, LangGraph and LlamaIndex frameworks, then real-world use cases and a benchmark-based final challenge. It also has bonus units on fine-tuning for function-calling, agent observability and evaluation, and Pokémon battle agents.
+
+**Status:** In progress
+
+Projects will be added here as I complete them.
+
+More about it: [AI Agents Course](3-ai-agents-course/README.md)

@@ -1,5 +1,6 @@
 from pydantic import Field
 from mcp.server.fastmcp import FastMCP
+from mcp.server.fastmcp.prompts import base
 
 mcp = FastMCP("DocumentMCP", log_level="ERROR")
 
@@ -53,6 +54,7 @@ def edit_document(
 def list_documents():
     return list(docs.keys())
 
+
 # Write a resource to return the contents of a particular doc
 @mcp.resource(
     "docs://documents/{doc_id}",
@@ -65,8 +67,46 @@ def get_document_contents(doc_id: str):
         raise ValueError(f"Document with ID '{doc_id}' not found.")
     return docs[doc_id]
 
-# TODO: Write a prompt to rewrite a doc in markdown format
-# TODO: Write a prompt to summarize a doc
+
+# Write a prompt to rewrite a doc in markdown format
+@mcp.prompt(
+    name="format_document",
+    description="Rewrite the contents of a document in markdown format.",
+)
+def format_document(doc_id: str=Field(description="The ID of the document to format.")) -> list[base.Message]:
+    prompt = f"""
+    Your goal is to reformat a document to be written with markdown syntax. 
+    
+    The id of the document you need to reformat is:
+    <document_id>
+    {doc_id}
+    </document_id>
+    
+    Add in headers, bullet points, tables, etc. as necessary. 
+    Feel free to add in any additional formatting that you think would make the document more readable.
+    Use the 'edit_document' tool to edit the document. 
+    After the document has been reformatted, use the 'read_document' tool to read the contents of the document and return it.
+    """
+    return [base.Message(role="user", content=prompt)]
+
+
+# Write a prompt to summarize a doc
+@mcp.prompt(
+    name="summarize_document",
+    description="Summarize the contents of a document.",
+)
+def summarize_document(doc_id: str=Field(description="The ID of the document to summarize.")) -> list[base.Message]:
+    prompt = f"""
+    Your goal is to summarize a document. 
+    
+    The id of the document you need to summarize is:
+    <document_id>
+    {doc_id}
+    </document_id>
+    
+    Use the 'read_document' tool to read the contents of the document and return it.
+    """
+    return [base.Message(role="user", content=prompt)]
 
 
 if __name__ == "__main__":

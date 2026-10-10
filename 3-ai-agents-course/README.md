@@ -34,6 +34,42 @@ The course offers two free certificates:
 
 ## Projects
 
-Projects from this course will be added to this folder as I complete them.
+Each unit is a folder, and each project of that unit is a subfolder inside it. Projects are added as I complete them.
 
-<!-- Add project folders and descriptions here -->
+```
+3-ai-agents-course/
+└── unit-1-introduction-to-agents/
+    ├── project-1-dummy-agent-library/       # Completed
+    └── project-2-agent-using-smolagents/    # Not started
+```
+
+### Unit 1: Introduction to Agents — [`unit-1-introduction-to-agents/`](unit-1-introduction-to-agents)
+
+**Status:** In progress
+
+#### Project 1: Dummy Agent Library — [`project-1-dummy-agent-library/`](unit-1-introduction-to-agents/project-1-dummy-agent-library)
+
+A notebook that builds an agent from scratch, without a framework, using a local `qwen2:7b` model served by Ollama.
+
+**How it works**
+
+1. A ReAct-style system prompt describes one tool, `get_weather`, and forces the Thought / Action (JSON) / Observation format.
+2. Generation is stopped at `Observation:` so the model cannot hallucinate the tool result.
+3. The code runs the dummy `get_weather` function with the model's chosen arguments.
+4. The result is appended as an Observation, and the model returns the final answer.
+
+**Tech stack**
+
+| Layer    | Technology                                   |
+| -------- | -------------------------------------------- |
+| Language | Python (Jupyter notebook)                    |
+| LLM      | `qwen2:7b` via Ollama (OpenAI-compatible API) |
+| Client   | `openai` Python SDK                          |
+
+More about it: [Dummy Agent Library](unit-1-introduction-to-agents/project-1-dummy-agent-library/README.md)
+
+#### Project 2: Agent using smolagents — [`project-2-agent-using-smolagents/`](unit-1-introduction-to-agents/project-2-agent-using-smolagents)
+
+**Status:** Not started
+
+More about the unit: [Unit 1](unit-1-introduction-to-agents/README.md)

@@ -11,18 +11,21 @@ Each top-level folder is a **course**, and each subfolder inside it is a **proje
 ```
 learn-AI/
 ├── README.md
-├── python-for-AI/                  # Course 1: Python for AI (YouTube: Codebasics)
+├── 1-python-for-AI/                # Course 1: Python for AI (YouTube: Codebasics)
 │   └── customer-feedback-analyzer/ # Project: Customer Feedback Analyzer
-├── anthropic-mcp-course/           # Course 2: Introduction to Model Context Protocol (Anthropic)
+├── 2-anthropic-mcp-course/         # Course 2: Introduction to Model Context Protocol (Anthropic)
 │   └── cli-based-chatbot/          # Project: MCP Chat (CLI-based chatbot)
-└── ai-agents-course/               # Course 3: AI Agents Course (Hugging Face)
+└── 3-ai-agents-course/             # Course 3: AI Agents Course (Hugging Face)
+    └── unit-1-introduction-to-agents/
+        ├── project-1-dummy-agent-library/     # Project: Dummy Agent Library
+        └── project-2-agent-using-smolagents/  # Project: Agent using smolagents (not started)
 ```
 
 > The tree will grow as I move through the learning path and add new courses and projects.
 
 ## Courses & Projects
 
-### 1. Python for AI — [`python-for-AI/`](python-for-AI)
+### 1. Python for AI — [`1-python-for-AI/`](1-python-for-AI)
 
 **Course:** [Python for AI (YouTube)](https://www.youtube.com/watch?v=6GuyMZ-cSzE)
 
@@ -30,7 +33,7 @@ The first course of the path. It revises Python with a focus on what is needed f
 
 **Status:** Completed
 
-#### Project: Customer Feedback Analyzer — [`python-for-AI/customer-feedback-analyzer/`](python-for-AI/customer-feedback-analyzer)
+#### Project: Customer Feedback Analyzer — [`1-python-for-AI/customer-feedback-analyzer/`](1-python-for-AI/customer-feedback-analyzer)
 
 A tool that analyzes a business's Google reviews and performs sentiment analysis on them.
 
@@ -54,7 +57,7 @@ A tool that analyzes a business's Google reviews and performs sentiment analysis
 | Database | SQLite     |
 | LLM      | Gemini API |
 
-More about it: [Customer Feedback Analyzer](python-for-AI/customer-feedback-analyzer/README.md)
+More about it: [Customer Feedback Analyzer](1-python-for-AI/customer-feedback-analyzer/README.md)
 
 ---
 
@@ -107,6 +110,33 @@ The third course of the path. A free, self-paced course from Hugging Face that g
 
 **Status:** In progress
 
-Projects will be added here as I complete them.
+The course is organized by **unit**, and each unit contains its own projects. Projects will be added here as I complete them.
 
-More about it: [AI Agents Course](3-ai-agents-course/README.md)
+#### Unit 1: Introduction to Agents — [`3-ai-agents-course/unit-1-introduction-to-agents/`](3-ai-agents-course/unit-1-introduction-to-agents)
+
+**Status:** In progress
+
+##### Project: Dummy Agent Library — [`project-1-dummy-agent-library/`](3-ai-agents-course/unit-1-introduction-to-agents/project-1-dummy-agent-library)
+
+A notebook that builds an agent from scratch, without any framework, to show what happens under the hood.
+
+**How it works**
+
+1. A ReAct-style system prompt describes a dummy `get_weather` tool and forces the Thought / Action / Observation format.
+2. Generation is stopped at `Observation:` so the model can't hallucinate the tool result.
+3. The notebook runs the tool with the arguments the model chose and appends the result as an Observation.
+4. The model then produces the final answer.
+
+**Tech stack**
+
+| Layer    | Technology                                    |
+| -------- | --------------------------------------------- |
+| Language | Python (Jupyter notebook)                     |
+| LLM      | `qwen2:7b` via Ollama (OpenAI-compatible API) |
+| Client   | `openai` Python SDK                           |
+
+More about it: [Dummy Agent Library](3-ai-agents-course/unit-1-introduction-to-agents/project-1-dummy-agent-library/README.md)
+
+> Next up in this unit: an agent built with the `smolagents` library.
+
+More about the course: [AI Agents Course](3-ai-agents-course/README.md)

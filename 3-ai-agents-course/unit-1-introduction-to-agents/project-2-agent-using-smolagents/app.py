@@ -4,8 +4,11 @@ import requests
 import pytz
 import yaml
 from tools.final_answer import FinalAnswerTool
+from dotenv import load_dotenv
 
 from Gradio_UI import GradioUI
+
+load_dotenv()  # Load environment variables from .env file
 
 # Below is an example of a tool that does nothing. Amaze us with your creativity !
 @tool

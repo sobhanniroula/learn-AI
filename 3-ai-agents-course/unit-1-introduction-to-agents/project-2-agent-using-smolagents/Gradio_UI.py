@@ -153,7 +153,9 @@ def stream_to_gradio(
         ):
             yield message
 
-    final_answer = step_log  # Last log is the run's final_answer
+    # final_answer = step_log  # Last log is the run's final_answer
+    # final_answer = handle_agent_output_types(final_answer)
+    final_answer = step_log.final_answer  # last item is a FinalAnswerStep wrapper
     final_answer = handle_agent_output_types(final_answer)
 
     if isinstance(final_answer, AgentText):
